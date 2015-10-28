@@ -2,14 +2,16 @@ from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
 from nltk.tokenize import sent_tokenize, word_tokenize
 from collections import Counter, defaultdict
+import nltk
 from lazysorted import LazySorted
 from string import ascii_letters
-import nltk
 
 #nltk.download()
 
 app = Flask(__name__)
 api = Api(app)
+app.config['DEBUG'] = True
+app = Flask(__name__)
 
 parser = reqparse.RequestParser()
 parser.add_argument('text', required=True, help="text field cannot be blank!")
@@ -76,24 +78,10 @@ class medianWordLen(Resource):
         median_words = [word for word, count in counts.iteritems() if count == median]
         return median_words
 
-## Find words that occur the median amount
-#  1) Use NLTK's sentence tokenization
-#  2) Calc avg: O(n)
-class sentLength(Resource):
-    def post(self):
-        args = parser.parse_args()
-        text = args['text']
-        sentences = sent_tokenize(text)
-        sum_lengths = 0
-        for sentence in sentences:
-            sum_lengths += len(word_tokenize(sentence))
-        return sum_lengths / len(sentences)
-
 #----------ROUTES-----------# 
 api.add_resource(avgLen, '/words/avg_len')
 api.add_resource(mostCommonWord, '/words/most_com')
 api.add_resource(medianWordLen, '/words/median')
-api.add_resource(sentLength, '/sentences/avg_len')
 
 if __name__ == '__main__':
     app.run(debug=True)
@@ -101,12 +89,13 @@ if __name__ == '__main__':
 
 #----------Exampel Curl Requests-----------# 
 ## avgLen:          curl http://http://lhofer.github.io/mark43_api/avg_len -d '{"text":"something new"}' -X POST -H "Content-type: application/json" 
-## mostCommonWord: curl http://localhost:5000/words/most_com -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
+## mostCommonWord1: curl https://murmuring-mountain-3207.herokuapp.com/words/most_com -d '{"text":"something new. and and now a new sentence. That is pretty awesome!"}' -X POST -H "Content-type: application/json"
+## mostCommonWord2: curl http://localhost:5000/words/most_com -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
 ## medianWordLen:   curl http://localhost:5000/words/median -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-## sentLen:         curl http://localhost:5000/sentences/avg_len -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
 
 
-#----------About the freqency algorighms (most frequent and median)-----------#
+
+#----------About the Algorithms-----------#
 ## Most common word: Why this algorithm:
 #  Sorting the hash first and going through the most frequent words would take O(n logn) 
 #  to sort plus the time to iterate through the most frequent words, on top of the O(n) 
