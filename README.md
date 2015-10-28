@@ -19,10 +19,10 @@ Use curl requests and return processed text
 
 ###Usage
 1. Start Server in api_mark43 directory
-  *$ . venv/bin/activate
-  *$ python api.py
+  * $ . venv/bin/activate
+  * $ python api.py
 2. in another terminal window
-  *$ curl <curl request>
+  * $ curl <curl request>
 
 ###Setup
 ####IMPORTANT: If this setup doesn't work please let me know and I can host it on a server elsewhere
