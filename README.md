@@ -15,6 +15,7 @@ Use curl requests and return processed text
 2. most common word: curl http://localhost:5000/words/most_com -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
 3. median words: curl http://localhost:5000/words/median -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
 4. sentence length: curl http://localhost:5000/sentences/avg_len -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
+###### NOTE: the terminal I test on reads requires unicode chars instead of escaped special characters (i.e. apostrophe should be represented as \u0027 instead of \')
 
 ###Usage
 1. $ . venv/bin/activate
