@@ -86,7 +86,7 @@ class sentLength(Resource):
         sentences = sent_tokenize(text)
         sum_lengths = 0
         for sentence in sentences:
-            sum_lengths += len(word_tokenize(sentence))
+            sum_lengths += len(wordOnly(word_tokenize(sentence)))
         return sum_lengths / len(sentences)
 
 #----------ROUTES-----------# 
