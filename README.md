@@ -40,3 +40,16 @@ Use curl requests and return processed text
 8. $ pip install nltk
 9. $ pip install lazysorted
 10. $ pip install Counter
+
+####Design
+#####Performance
+Given the initial overhead of parsing, tokenizing, and filtering the text, where possible I tried to optimize my code for larger values of n, thinking that the time saved on large lists would be much more than the time lost on small lists. Additionally, the decision to implement a hash table with the words as a keys in the frequency functions was to allow O(1) access time to any word-frequency pair. 
+
+##### Most Common Word
+An alternative I considered was to sort the hash table by frequency and then iterate through only the most frequent words. However, this would take O(n logn) to sort plus the time to iterate through the most frequent words, on top of the O(n) time to hash. The current implementation will run in O(2n) time (O(n) time to hash and O(n) to iterate through each value to check for the max) whereas the previous implementation would take at a minimum of n + (n logn) which would be slower than the current implementation as n increases. 
+
+##### Median Frequency Words
+Again, an alternative would be to sort the hash (n logn) and then iterate through to find the median values, stopping once you pass the last median value in the sorted list. This would take at a minimum O(n logn plus) the O(n) time to hash which would again be slower as n increases than the current implementation. The current implementation takes O(n) time to generate the hash table, uses a linear median function (so O(n) agian) and then iterates through every value in the list (O(n)). 3n is still less than n logn + n for larger lists.
+
+#####Definitions
+As this program is a text processer not a spell checker, and I wanted to make sure someone could process Dr. Suss texts, I decided not to crosscheck all words against an english language dictionary. However, I did decide to use only words comprised of only alphabetic characters, hyphons, and apostrophes (so no numbers or other punctuation could be counted as a word). Beyond this, for the most part I left the definitions of words and sentences up to the NLTK library.
