@@ -21,7 +21,7 @@ Use curl requests and return processed text
 2. $ python api.py
 
 ###Setup
-#####IMPORTANT: If this setup doesn't work please let me know and I can host it on a server elsewhere
+####IMPORTANT: If this setup doesn't work please let me know and I can host it on a server elsewhere
 1. Clone Repo
   * clone repo from https://github.com/lhofer/api_mark43.git
 2. Install virtual environment
