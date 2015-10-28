@@ -22,7 +22,7 @@ Use curl requests and return processed text
   * $ . venv/bin/activate
   * $ python api.py
 2. in another terminal window
-  * $ curl <curl request>
+  * $ curl request
 
 ###Setup
 ####IMPORTANT: If this setup doesn't work please let me know and I can host it on a server elsewhere
