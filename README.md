@@ -41,7 +41,7 @@ Use curl requests and return processed text
 9. $ pip install lazysorted
 10. $ pip install Counter
 
-####Design
+###Design
 #####Performance
 Given the initial overhead of parsing, tokenizing, and filtering the text, where possible I tried to optimize my code for larger values of n, thinking that the time saved on large lists would be much more than the time lost on small lists. Additionally, the decision to implement a hash table with the words as a keys in the frequency functions was to allow O(1) access time to any word-frequency pair. 
 
