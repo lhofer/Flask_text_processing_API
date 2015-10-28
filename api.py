@@ -40,7 +40,7 @@ def calcMedian(xs):
         return sum(ls[(n/2-1):(n/2+1)]) / 2.0
 
 #----------CONTROLLERS-----------# 
-## Find words that occur the median amount
+## Find average word length
 #  1) Add the length of each word and divide by total number of words
 class avgLen(Resource):
     def post(self):
