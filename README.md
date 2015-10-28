@@ -18,8 +18,11 @@ Use curl requests and return processed text
 ###### NOTE: the terminal I test on reads requires unicode chars instead of escaped special characters (i.e. apostrophe should be represented as \u0027 instead of \')
 
 ###Usage
-1. $ . venv/bin/activate
-2. $ python api.py
+1. Start Server in api_mark43 directory
+  *$ . venv/bin/activate
+  *$ python api.py
+2. in another terminal window
+  *$ curl <curl request>
 
 ###Setup
 ####IMPORTANT: If this setup doesn't work please let me know and I can host it on a server elsewhere
