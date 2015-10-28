@@ -97,14 +97,3 @@ api.add_resource(sentLength, '/sentences/avg_len')
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-#----------About the freqency algorighms (most frequent and median)-----------#
-## Most common word: Why this algorithm:
-#  Sorting the hash first and going through the most frequent words would take O(n logn) 
-#  to sort plus the time to iterate through the most frequent words, on top of the O(n) 
-#  time to hash. This would be slower than the current implementation as n increases
-
-## Words with median frequency: Why this algorithm:
-#  The alternative is sorting the hash (n logn) and iterating through 
-#  to find the median values, plus the O(n) time to hash which would 
-#  again be slower as n increases
