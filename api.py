@@ -98,14 +98,6 @@ api.add_resource(sentLength, '/sentences/avg_len')
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-#----------Exampel Curl Requests-----------# 
-## avgLen:          curl http://http://lhofer.github.io/mark43_api/avg_len -d '{"text":"something new"}' -X POST -H "Content-type: application/json" 
-## mostCommonWord: curl http://localhost:5000/words/most_com -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-## medianWordLen:   curl http://localhost:5000/words/median -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-## sentLen:         curl http://localhost:5000/sentences/avg_len -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-
-
 #----------About the freqency algorighms (most frequent and median)-----------#
 ## Most common word: Why this algorithm:
 #  Sorting the hash first and going through the most frequent words would take O(n logn) 
