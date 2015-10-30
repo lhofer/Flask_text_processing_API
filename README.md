@@ -1,6 +1,5 @@
 #Text Processing API
-####Leila Hofer
-####Mark 43 Application
+####Leila Hofer Mark 43 Application
 
 ##About
 Use curl requests and return processed text
