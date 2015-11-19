@@ -39,11 +39,11 @@ Use curl requests and return processed text
   * (mac) $ . venv/bin/activate
   * (windows) $ venv\scripts\activate
 5. install dependencies
-6. $ pip install Flask
-7. $ pip install flask-restful
-8. $ pip install nltk
-9. $ pip install lazysorted
-10. $ pip install Counter
+  * $ pip install Flask
+  * $ pip install flask-restful
+  * $ pip install nltk
+  * $ pip install lazysorted
+  * $ pip install Counter
 
 ###Design
 #####Performance
