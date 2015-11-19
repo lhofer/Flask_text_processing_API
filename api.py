@@ -1,4 +1,4 @@
-from flask import Flask
+ from flask import Flask
 from flask_restful import reqparse, Api, Resource
 from nltk.tokenize import sent_tokenize, word_tokenize
 from collections import Counter
