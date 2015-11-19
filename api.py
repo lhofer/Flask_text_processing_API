@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import reqparse, Api, Resource
 from nltk.tokenize import sent_tokenize, word_tokenize
-from collections import Counter, defaultdict
+from collections import Counter
 from lazysorted import LazySorted
 from string import ascii_letters
 import nltk
@@ -40,7 +40,7 @@ def calcMedian(xs):
         return sum(ls[(n/2-1):(n/2+1)]) / 2.0
 
 #----------CONTROLLERS-----------# 
-## Find words that occur the median amount
+## Find average word length
 #  1) Add the length of each word and divide by total number of words
 class avgLen(Resource):
     def post(self):
@@ -87,7 +87,7 @@ class sentLength(Resource):
         sum_lengths = 0
         for sentence in sentences:
             sum_lengths += len(word_tokenize(sentence))
-        return sum_lengths / len(sentences)
+        return float(sum_lengths / len(sentences))
 
 #----------ROUTES-----------# 
 api.add_resource(avgLen, '/words/avg_len')
@@ -97,22 +97,3 @@ api.add_resource(sentLength, '/sentences/avg_len')
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-#----------Exampel Curl Requests-----------# 
-## avgLen:          curl http://http://lhofer.github.io/mark43_api/avg_len -d '{"text":"something new"}' -X POST -H "Content-type: application/json" 
-## mostCommonWord: curl http://localhost:5000/words/most_com -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-## medianWordLen:   curl http://localhost:5000/words/median -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-## sentLen:         curl http://localhost:5000/sentences/avg_len -d '{"text":"something new. and now a new sentence. That is pretty and awesome!"}' -X POST -H "Content-type: application/json"
-
-
-#----------About the freqency algorighms (most frequent and median)-----------#
-## Most common word: Why this algorithm:
-#  Sorting the hash first and going through the most frequent words would take O(n logn) 
-#  to sort plus the time to iterate through the most frequent words, on top of the O(n) 
-#  time to hash. This would be slower than the current implementation as n increases
-
-## Words with median frequency: Why this algorithm:
-#  The alternative is sorting the hash (n logn) and iterating through 
-#  to find the median values, plus the O(n) time to hash which would 
-#  again be slower as n increases
